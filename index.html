@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Availability Table</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  </head>
+  <body>
+    <main>
+      <label class="switch">
+        <input type="checkbox" id="theme-toggle" />
+        <span class="slider"></span>
+      </label>
+      <div id="capture-area">
+        <table>
+          <caption>
+            <span class="typing-text">Availability Table</span>
+          </caption>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+              <th>Friday</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="time" data-index="0" rowspan="2">
+                <button class="up">▲</button>
+                <span class="time-label">08:00 AM</span>
+                <button class="down">▼</button>
+              </th>
+              <td class="available-free"></td>
+              <td class="available-campus1"></td>
+              <td class="available-campus1"></td>
+              <td class="available-campus2"></td>
+              <td class="available-campus2"></td>
+            </tr>
+
+            <tr>
+              <th class="time" data-index="0" rowspan="2">
+                <button class="up">▲</button>
+                <span class="time-label">09:00 AM</span>
+                <button class="down">▼</button>
+              </th>
+              <td class="available-free"></td>
+              <td class="available-campus1"></td>
+              <td class="available-campus1"></td>
+              <td class="available-campus2"></td>
+              <td class="available-campus2"></td>
+            </tr>
+
+            <tr>
+              <th class="time" data-index="0" rowspan="2">
+                <button class="up">▲</button>
+                <span class="time-label">10:00 AM</span>
+                <button class="down">▼</button>
+              </th>
+              <td class="available-free"></td>
+              <td class="available-campus1"></td>
+              <td class="available-campus1"></td>
+              <td class="available-campus2"></td>
+              <td class="available-campus2"></td>
+            </tr>
+
+            <tr>
+              <th class="time" data-index="0" rowspan="2">
+                <button class="up">▲</button>
+                <span class="time-label">11:00 AM</span>
+                <button class="down">▼</button>
+              </th>
+              <td class="available-free"></td>
+              <td class="available-campus1"></td>
+              <td class="available-campus1"></td>
+              <td class="available-campus2"></td>
+              <td class="available-campus2"></td>
+            </tr>
+
+            <tr>
+              <th class="time" data-index="0" rowspan="2">
+                <button class="up">▲</button>
+                <span class="time-label">12:00 PM</span>
+                <button class="down">▼</button>
+              </th>
+              <td class="available-free"></td>
+              <td class="available-campus1"></td>
+              <td class="available-campus1"></td>
+              <td class="available-campus2"></td>
+              <td class="available-campus2"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <section id="legend">
+          <span>Availability</span>
+          <div class="legend-row-wrapper">
+            <div id="legend-gradient">
+              <div
+                class="color-block"
+                data-var="--color1"
+                title="Available"
+              ></div>
+              <div
+                class="color-block"
+                data-var="--color2"
+                title="Campus A"
+              ></div>
+              <div
+                class="color-block"
+                data-var="--color3"
+                title="Campus B"
+              ></div>
+            </div>
+
+            <input type="color" id="color-picker" class="hidden" />
+          </div>
+        </section>
+      </div>
+      <section>
+        <button id="reset-button">Reset Table</button>
+        <button id="export-button">Export as PNG</button>
+      </section>
+    </main>
+    <div id="popup" class="popup hidden">
+      <p>Choose the place:</p>
+      <div class="popup-options">
+        <button data-value="free">Available</button>
+        <button data-value="campus1">Campus A</button>
+        <button data-value="campus2">Campus B</button>
+      </div>
+    </div>
+  </body>
+</html>
