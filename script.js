@@ -1,12 +1,13 @@
-// =========================
-// 1. TEMA (DARK/LIGHT MODE) | THEME (DARK/LIGHT MODE)
-// =========================
+/* =========================
+ * 1. THEME SWITCHING | TROCA DE TEMA
+ * =========================
+ */
 
 const themeToggle = document.getElementById("theme-toggle");
 const userPref = localStorage.getItem("theme");
 
-// Aplica o tema salvo ou o preferido do sistema
 // Apply saved theme or system preference
+// Aplica o tema salvo ou o preferido do sistema
 if (userPref) {
   document.body.classList.add(userPref);
   themeToggle.checked = userPref === "dark-mode";
@@ -16,8 +17,8 @@ if (userPref) {
   themeToggle.checked = prefersDark;
 }
 
-// Alterna entre dark e light mode
 // Toggle between dark and light mode
+// Alterna entre dark e light mode
 themeToggle.addEventListener("change", () => {
   if (themeToggle.checked) {
     document.body.classList.replace("light-mode", "dark-mode");
@@ -28,20 +29,21 @@ themeToggle.addEventListener("change", () => {
   }
 });
 
-// =========================
-// 2. TABELA DE DISPONIBILIDADE | AVAILABILITY TABLE
-// =========================
+/* =========================
+ * 2. TABLE INTERACTION | INTERAÇÃO COM A TABELA
+ * =========================
+ */
 
 const cells = document.querySelectorAll("td");
 
-// --- Popup para seleção de disponibilidade ---
-// --- Popup for selecting availability ---
+// Popup for selecting availability
+// Popup para seleção de disponibilidade
 const popup = document.getElementById("popup");
 const popupButtons = popup.querySelectorAll("button");
 let activeCell = null;
 
-// Exibe o popup na posição do clique
 // Show popup at click position
+// Exibe o popup na posição do clique
 function showPopup(cell, x, y) {
   popup.style.left = `${x}px`;
   popup.style.top = `${y}px`;
@@ -50,8 +52,8 @@ function showPopup(cell, x, y) {
   activeCell = cell;
 }
 
-// Aplica e salva a disponibilidade escolhida
 // Apply and save selected availability
+// Aplica e salva a disponibilidade escolhida
 function applyAvailability(cell, value) {
   cell.classList.remove(
     "available-campusA",
@@ -63,8 +65,8 @@ function applyAvailability(cell, value) {
   localStorage.setItem(`cell-${index}`, value);
 }
 
-// Eventos dos botões do popup
 // Popup button events
+// Eventos dos botões do popup
 popupButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     const value = btn.getAttribute("data-value");
@@ -73,8 +75,8 @@ popupButtons.forEach((btn) => {
   });
 });
 
-// Mostra popup ao clicar em uma célula da tabela
 // Show popup when clicking a table cell
+// Mostra popup ao clicar em uma célula da tabela
 cells.forEach((cell) => {
   cell.addEventListener("click", (e) => {
     const rect = cell.getBoundingClientRect();
@@ -86,8 +88,8 @@ cells.forEach((cell) => {
   });
 });
 
-// Restaura disponibilidade salva nas células
 // Restore saved availability in cells
+// Restaura disponibilidade salva nas células
 cells.forEach((cell, index) => {
   const saved = localStorage.getItem(`cell-${index}`);
   if (saved) {
@@ -95,26 +97,27 @@ cells.forEach((cell, index) => {
   }
 });
 
-// Esconde popup ao clicar fora dele
 // Hide popup when clicking outside
+// Esconde popup ao clicar fora dele
 document.addEventListener("click", (e) => {
   if (!popup.contains(e.target) && !e.target.matches("td")) {
     popup.classList.add("hidden");
   }
 });
 
-// =========================
-// 3. EDIÇÃO DOS HORÁRIOS | TIME EDITING
-// =========================
+/* =========================
+ * 3. TIME MANAGEMENT | GESTÃO DE HORÁRIOS
+ * =========================
+ */
 
+// Get all <th> with .time-label
 // Seleciona todos os <th> com .time-label
-// Select all <th> with .time-label
 const allTimeCells = Array.from(document.querySelectorAll("th.time")).filter(
   (cell) => cell.querySelector(".time-label")
 );
 
-// Atualiza todos os horários a partir de um novo valor base
 // Update all times from a new base value
+// Atualiza todos os horários a partir de um novo valor base
 function updateAllTimes(baseTime, index) {
   const allTimeCells = getAllTimeCells();
   for (let i = 0; i < allTimeCells.length; i++) {
@@ -125,8 +128,8 @@ function updateAllTimes(baseTime, index) {
   }
 }
 
-// Permite editar o horário clicando no label
 // Allow editing time by clicking the label
+// Permite editar o horário clicando no label
 allTimeCells.forEach((cell, index) => {
   const label = cell.querySelector(".time-label");
 
@@ -146,14 +149,14 @@ allTimeCells.forEach((cell, index) => {
   });
 });
 
-// Valida formato de hora "08:00 AM"
 // Validate time format "08:00 AM"
+// Valida formato de hora "08:00 AM"
 function isValidTime(str) {
   return /^([0]?[1-9]|1[0-2]):[0-5][0-9]\s?(AM|PM)$/i.test(str);
 }
 
-// Adiciona horas a um horário base e retorna Date
 // Add hours to a base time and return Date
+// Adiciona horas a um horário base e retorna Date
 function addHoursToTime(baseTimeStr, offset) {
   const [time, modifier] = baseTimeStr.split(" ");
   let [hours, minutes] = time.split(":").map(Number);
@@ -165,8 +168,8 @@ function addHoursToTime(baseTimeStr, offset) {
   return base;
 }
 
-// Formata Date para "08:00 AM"
 // Format Date to "08:00 AM"
+// Formata Date para "08:00 AM"
 function formatTime(date) {
   let hours = date.getHours();
   const minutes = date.getMinutes().toString().padStart(2, "0");
@@ -175,8 +178,8 @@ function formatTime(date) {
   return `${hours.toString().padStart(2, "0")}:${minutes} ${ampm}`;
 }
 
-// Botões para subir/descer horário
 // Buttons to increase/decrease time
+// Botões para subir/descer horário
 document.querySelectorAll("th.time").forEach((cell, index) => {
   const label = cell.querySelector(".time-label");
   const up = cell.querySelector(".up");
@@ -193,16 +196,18 @@ document.querySelectorAll("th.time").forEach((cell, index) => {
   });
 });
 
-// =========================
-// 4. BOTÕES DE RESET E EXPORTAÇÃO | RESET AND EXPORT BUTTONS
-// =========================
+/* =========================
+ * 4. RESET & EXPORT | RESET E EXPORTAÇÃO
+ * =========================
+ */
 
-// Limpa todas as seleções da tabela
 // Clear all table selections
+// Limpa todas as seleções da tabela
 document.getElementById("reset-button").addEventListener("click", () => {
   if (!confirm("Are you sure you want to reset the entire table?")) {
     return;
   }
+  // Clear selections
   // Limpa seleções
   const allCells = document.querySelectorAll("td");
   allCells.forEach((cell, index) => {
@@ -214,12 +219,14 @@ document.getElementById("reset-button").addEventListener("click", () => {
     localStorage.removeItem(`cell-${index}`);
   });
 
+  // Remove extra rows
   // Remove linhas extras
   const tbody = table.querySelector("tbody");
   while (tbody.rows.length > 5) {
     tbody.deleteRow(tbody.rows.length - 1);
   }
 
+  // Restore original times
   // Restaura horários originais
   const baseTimes = [
     "08:00 AM",
@@ -233,11 +240,31 @@ document.getElementById("reset-button").addEventListener("click", () => {
     if (th) th.textContent = baseTimes[i];
   }
 
+  // Restore default labels
+  // Restaura nomes padrão dos botões
+  const defaultLabels = {
+    label1: "Campus A",
+    label2: "Campus B",
+    label3: "Campus C",
+  };
+
+  ["label1", "label2", "label3"].forEach((key) => {
+    localStorage.removeItem(key);
+    // Update legend button text
+    const legendBtn = document.querySelector(
+      `.legend-button[data-key="${key}"]`
+    );
+    if (legendBtn) legendBtn.textContent = defaultLabels[key];
+    // Update popup button text
+    const popupBtn = document.querySelector(`.popup button[data-key="${key}"]`);
+    if (popupBtn) popupBtn.textContent = defaultLabels[key];
+  });
+
   updateAddRowBtnState();
 });
 
-// Exporta a tabela como PNG
 // Export table as PNG
+// Exporta a tabela como PNG
 document.getElementById("export-button").addEventListener("click", () => {
   html2canvas(document.getElementById("capture-area"), {
     backgroundColor: "#1e5511",
@@ -250,20 +277,26 @@ document.getElementById("export-button").addEventListener("click", () => {
   });
 });
 
-// =========================
-// 5. PERSONALIZAÇÃO DE CORES | COLOR CUSTOMIZATION
-// =========================
+/* =========================
+ * 5. COLOR CUSTOMIZATION | PERSONALIZAÇÃO DE CORES
+ * =========================
+ */
 
-// Seletores dos blocos de cor e do color picker
-// Select color blocks and color picker
 const colorBlocks = document.querySelectorAll(".color-block");
 const colorPicker = document.getElementById("color-picker");
 
 let lastColorBlock = null;
 
 colorBlocks.forEach((block) => {
-  block.addEventListener("click", () => {
-    lastColorBlock = block; // Salva referência do bloco clicado
+  block.addEventListener("click", (event) => {
+    // Only open color picker if not clicking the edit icon
+    // Só abre o seletor se não clicar no ícone do lápis
+    if (event.target.closest(".edit-icon")) {
+      return;
+    }
+
+    // Open color picker at block position
+    // Abre o seletor de cor ao clicar no bloco
     const rect = block.getBoundingClientRect();
     const scrollTop = window.scrollY;
     const scrollLeft = window.scrollX;
@@ -271,27 +304,25 @@ colorBlocks.forEach((block) => {
     const currentColor = getComputedStyle(block).backgroundColor;
     colorPicker.value = rgbToHex(currentColor);
 
-    // Posiciona o color picker acima do bloco clicado
-    // Position color picker above the clicked block
     colorPicker.style.left = `${
       rect.left + scrollLeft + rect.width / 2 - 16
-    }px`; // 16 = metade da largura do picker (2rem)
-    colorPicker.style.top = `${rect.top + scrollTop - 30}px`; // aparece acima | appears above
+    }px`;
+    colorPicker.style.top = `${rect.top + scrollTop - 30}px`;
 
     colorPicker.classList.add("active");
     colorPicker.dataset.target = block.dataset.var;
 
-    // Abre o seletor automaticamente
-    // Open the color picker automatically
     setTimeout(() => {
       colorPicker.click();
     }, 10);
   });
 
-  // Clique já está implementado
   block.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      lastColorBlock = block; // Salva referência do bloco ativado por teclado
+    if (
+      (e.key === "Enter" || e.key === " ") &&
+      document.activeElement === block
+    ) {
+      lastColorBlock = block;
       block.click();
       e.preventDefault();
     }
@@ -301,23 +332,20 @@ colorBlocks.forEach((block) => {
 colorPicker.addEventListener("change", (e) => {
   const targetVar = e.target.dataset.target;
   document.documentElement.style.setProperty(targetVar, e.target.value);
-  // Atualiza visual do bloco imediatamente
-  // Immediately update the color block's visual
+  // Update color block visual immediately
   document.querySelector(
     `.color-block[data-var="${targetVar}"]`
   ).style.backgroundColor = e.target.value;
   colorPicker.classList.remove("active");
-  // Devolve o foco ao bloco de cor
+  // Return focus to color block
   if (lastColorBlock) lastColorBlock.focus();
 });
 
 colorPicker.addEventListener("blur", () => {
   colorPicker.classList.remove("active");
-  // Devolve o foco ao bloco de cor (caso o usuário cancele o seletor)
   if (lastColorBlock) lastColorBlock.focus();
 });
 
-// Converte RGB para hexadecimal
 // Convert RGB to hexadecimal
 function rgbToHex(rgb) {
   if (rgb.startsWith("#")) return rgb;
@@ -332,22 +360,20 @@ function rgbToHex(rgb) {
   );
 }
 
-// Restaura as cores personalizadas salvas
 // Restore saved custom colors for color blocks
 ["--color1", "--color2", "--color3"].forEach((varName) => {
   const saved = localStorage.getItem(varName);
   if (saved) {
     document.documentElement.style.setProperty(varName, saved);
-    // Atualiza visual do bloco imediatamente ao carregar
-    // Immediately update the color block's visual on load
     const block = document.querySelector(`.color-block[data-var="${varName}"]`);
     if (block) block.style.backgroundColor = saved;
   }
 });
 
-// =========================
-// 6. EDIÇÃO DOS NOMES DAS CORES | COLOR LABEL EDITING
-// =========================
+/* =========================
+ * 6. LABEL EDITING | EDIÇÃO DE RÓTULOS
+ * =========================
+ */
 
 const labelButtons = document.querySelectorAll(".legend-button");
 
@@ -356,28 +382,23 @@ labelButtons.forEach((button) => {
   const saved = localStorage.getItem(key);
   if (saved) button.textContent = saved;
 
-  // Envolve o botão com uma div de alinhamento
   // Wrap the button with an alignment div
   const wrapper = document.createElement("div");
   wrapper.className = "legend-button-wrapper";
 
-  // Substitui o botão pelo wrapper (mantendo na mesma posição)
   // Replace the button with the wrapper (keeping the same position)
   const parent = button.parentElement;
   parent.replaceChild(wrapper, button);
   wrapper.appendChild(button);
 
-  // Cria o ícone de edição
   // Create the edit icon
   const editIcon = document.createElement("div");
   editIcon.className = "edit-icon";
   editIcon.textContent = "✏️";
 
-  // Adiciona o ícone depois do wrapper
   // Add the icon after the wrapper
   parent.appendChild(editIcon);
 
-  // Evento de clique para edição
   // Click event for editing
   editIcon.addEventListener("click", () => {
     const input = document.createElement("input");
@@ -398,7 +419,7 @@ labelButtons.forEach((button) => {
         button.textContent = newName;
         localStorage.setItem(key, newName);
 
-        // Atualiza o texto do botão do popup correspondente
+        // Update popup button text
         const popupBtn = document.querySelector(
           `.popup button[data-key="${key}"]`
         );
@@ -415,7 +436,7 @@ labelButtons.forEach((button) => {
   });
 });
 
-// Sincroniza nomes personalizados nos botões do popup ao carregar
+// Sync custom label names in popup buttons on load
 ["label1", "label2", "label3"].forEach((key) => {
   const saved = localStorage.getItem(key);
   if (saved) {
@@ -424,10 +445,9 @@ labelButtons.forEach((button) => {
   }
 });
 
-// Verifica se a cor é escura (retorna true para escura)
 // Check if color is dark (returns true for dark)
+// Verifica se a cor é escura (retorna true para escura)
 function isDarkColor(rgb) {
-  // Aceita rgb(r,g,b) ou #hex
   let r, g, b;
   if (rgb.startsWith("#")) {
     const hex = rgb.replace("#", "");
@@ -437,13 +457,12 @@ function isDarkColor(rgb) {
   } else {
     [r, g, b] = rgb.match(/\d+/g).map(Number);
   }
-  // Luminância relativa
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   return luminance < 0.5;
 }
 
-// Atualiza a cor da fonte do botão da legenda conforme o fundo
 // Update legend button text color based on background
+// Atualiza a cor da fonte do botão da legenda conforme o fundo
 function updateLegendButtonTextColor(block) {
   const btn = block.querySelector(".legend-button");
   const bg = getComputedStyle(block).backgroundColor;
@@ -462,7 +481,7 @@ colorPicker.addEventListener("change", (e) => {
   const block = document.querySelector(`.color-block[data-var="${targetVar}"]`);
   block.style.backgroundColor = e.target.value;
 
-  // Atualiza cor da fonte do botão
+  // Update legend button text color
   updateLegendButtonTextColor(block);
 
   colorPicker.classList.remove("active");
@@ -480,9 +499,10 @@ colorPicker.addEventListener("change", (e) => {
   }
 });
 
-// =========================
-// 7. ADICIONAR LINHAS À TABELA | ADD ROWS TO TABLE
-// =========================
+/* =========================
+ * 7. ROW MANAGEMENT | GESTÃO DE LINHAS
+ * =========================
+ */
 
 const table = document.querySelector("table");
 const addRowBtn = document.getElementById("add-row-btn");
@@ -498,9 +518,11 @@ addRowBtn.addEventListener("click", () => {
   const tbody = table.querySelector("tbody");
   if (tbody.rows.length >= 12) return;
 
+  // Create new row
   // Cria nova linha
   const tr = document.createElement("tr");
 
+  // Create time cell
   // Cria th do horário
   const th = document.createElement("th");
   th.className = "time";
@@ -529,6 +551,7 @@ addRowBtn.addEventListener("click", () => {
   th.appendChild(downBtn);
   tr.appendChild(th);
 
+  // Create tds for each campus
   // Cria tds para cada campus
   for (let i = 0; i < 5; i++) {
     const td = document.createElement("td");
@@ -545,6 +568,7 @@ addRowBtn.addEventListener("click", () => {
 
   table.querySelector("tbody").appendChild(tr);
 
+  // Time button events
   // Eventos dos botões
   upBtn.addEventListener("click", () => {
     const newTime = addHoursToTime(label.textContent.trim(), -1);
@@ -555,7 +579,7 @@ addRowBtn.addEventListener("click", () => {
     updateAllTimes(formatTime(newTime), tbody.rows.length - 1);
   });
 
-  // Aqui você deve adicionar os mesmos eventos de popup, edição de horário, etc.
+  // Allow editing time by clicking the label
   label.addEventListener("click", () => {
     label.contentEditable = "true";
     label.focus();
@@ -573,15 +597,15 @@ addRowBtn.addEventListener("click", () => {
   updateAddRowBtnState();
 });
 
+// Attach time button events to all rows
 // Função para anexar eventos de botão de horário
-// Function to attach time button events
 function attachTimeButtonEvents() {
   getAllTimeCells().forEach((cell, index) => {
     const label = cell.querySelector(".time-label");
     const up = cell.querySelector(".up");
     const down = cell.querySelector(".down");
 
-    // Remove eventos antigos para evitar múltiplos triggers
+    // Remove old events to avoid multiple triggers
     up?.replaceWith(up.cloneNode(true));
     down?.replaceWith(down.cloneNode(true));
 
@@ -600,22 +624,22 @@ function attachTimeButtonEvents() {
   });
 }
 
+// Call on page load
 // Chame ao carregar a página
 updateAddRowBtnState();
 
-// =========================
+// Auxiliary function to get all time cells
 // FUNÇÃO AUXILIAR PARA OBTER TODAS AS CÉLULAS DE HORÁRIO
-// AUXILIARY FUNCTION TO GET ALL TIME CELLS
-// =========================
 function getAllTimeCells() {
   return Array.from(document.querySelectorAll("th.time")).filter((cell) =>
     cell.querySelector(".time-label")
   );
 }
 
-// =========================
-// 8. ADICIONAR NOTAS ÀS CÉLULAS | ADD NOTES TO CELLS
-// =========================
+/* =========================
+ * 8. CELL NOTES | NOTAS NAS CÉLULAS
+ * =========================
+ */
 
 document.querySelectorAll("td").forEach((cell, idx) => {
   cell.addEventListener("dblclick", () => {
@@ -644,25 +668,28 @@ document.querySelectorAll("td").forEach((cell, idx) => {
     });
   });
 
+  // Show saved note on load
   // Exibe nota salva ao carregar
   const note = localStorage.getItem(`note-${idx}`);
   if (note) cell.setAttribute("data-note", note);
 });
 
-// =========================
-// ATALHOS DE TECLADO
-// KEYBOARD SHORTCUTS
-// =========================
+/* =========================
+ * 9. KEYBOARD SHORTCUTS & ACCESSIBILITY | ATALHOS E ACESSIBILIDADE
+ * =========================
+ */
 
 document.addEventListener("keydown", (e) => {
   if (e.ctrlKey && e.key === "Enter") {
     document.getElementById("add-row-btn").click();
   }
+  // Ctrl+Shift+R to reset (does not conflict with browser reload)
   // Ctrl+Shift+R para resetar (não conflita com recarregar)
   if (e.ctrlKey && e.shiftKey && (e.key === "r" || e.key === "R")) {
     document.getElementById("reset-button").click();
     e.preventDefault();
   }
+  // Alternative: Alt+R
   // Alternativa: Alt+R
   // if (e.altKey && (e.key === "r" || e.key === "R")) {
   //   document.getElementById("reset-button").click();
