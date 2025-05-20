@@ -93,8 +93,8 @@ This structure makes it easier for learners and collaborators to understand and 
 
 ### Light Mode
 
-![Availability Table - Light Mode](./@assets/screenshot-light.png)
+![Availability Table - Light Mode](./assets/screenshot-light.png)
 
 ### Dark Mode
 
-![Availability Table - Dark Mode](./@assets/screenshot-dark.png)
+![Availability Table - Dark Mode](./assets/screenshot-dark.png)
