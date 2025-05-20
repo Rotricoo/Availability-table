@@ -49,10 +49,10 @@ Using the final result from that task, I decided to extend it into a fully inter
 
 ## Keyboard Shortcuts
 
-| Action        | Shortcut         |
-|---------------|------------------|
-| Add Row       | Ctrl + Enter     |
-| Reset Table   | Ctrl + Shift + R |
+| Action      | Shortcut         |
+| ----------- | ---------------- |
+| Add Row     | Ctrl + Enter     |
+| Reset Table | Ctrl + Shift + R |
 
 ---
 
@@ -90,3 +90,11 @@ This structure makes it easier for learners and collaborators to understand and 
 ---
 
 ## Screenshots
+
+### Light Mode
+
+![Availability Table - Light Mode](./@assets/screenshot-light.png)
+
+### Dark Mode
+
+![Availability Table - Dark Mode](./@assets/screenshot-dark.png)
