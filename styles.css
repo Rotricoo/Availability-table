@@ -33,44 +33,42 @@ html {
 
 /* === BASE STYLES === */
 body {
+  font-family: "Courier New", Courier, monospace;
   background: linear-gradient(
     180deg,
     var(--color-background) 0%,
     var(--color-background2) 100%
   );
+  min-height: 100vh;
+  margin: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  font-family: "Courier New", Courier, monospace;
-  width: 100vw;
-  height: 100vh;
+  align-items: center;
+  justify-content: flex-start; /* ou center se quiser tudo no meio da tela */
 }
 
 /* === MAIN STRUCTURE === */
 main {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 div#capture-area {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  height: auto;
-  max-width: 100%;
+  max-width: 1000px;
   padding: 2rem;
   margin: auto;
-  overflow: hidden;
+  box-sizing: border-box;
+  min-width: 300px; /* ou 400px, ajuste conforme seu layout */
+  overflow-x: auto;
 }
 
 /* === TOGGLE SWITCH === */
 
 .switch {
+  margin-top: 2rem;
   opacity: 0.5;
   transform: scale(0.6);
   position: relative;
@@ -82,6 +80,7 @@ div#capture-area {
   width: 0;
   height: 0;
 }
+
 .slider {
   position: absolute;
   cursor: pointer;
@@ -113,51 +112,23 @@ input:checked + .slider::before {
 
 /* === TABLE STRUCTURE === */
 table {
-  min-width: 50%;
-  width: 70%;
+  min-width: 350px; /* ou o valor mínimo que mantém seu layout legível */
+  width: 100%;
   max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
   height: auto;
   table-layout: fixed;
 }
 
 /* === CAPTION TEXT ANIMATION === */
 caption {
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  font-weight: 700;
   caption-side: top;
   text-align: center;
   padding-bottom: 1rem;
-}
-
-.typing-text {
-  display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 2px solid var(--color-white);
-  animation: typing 3s steps(25, end) forwards, blink 0.6s step-end 10;
-  max-width: 25ch;
-  width: 100%;
-  font-size: 2rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 25ch;
-  }
-}
-
-@keyframes blink {
-  0%,
-  100% {
-    border-color: transparent;
-  }
-  50% {
-    border-color: var(--color-white);
-  }
 }
 
 /* === TABLE HEADERS === */
@@ -189,6 +160,11 @@ th.time {
   border: none;
   font-size: 1rem;
   cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+
+.time button:hover {
+  color: var(--color-white);
 }
 
 /* === TABLE DATA CELLS === */
@@ -202,59 +178,102 @@ td:hover {
   box-shadow: var(--color-darkgray) 0px 0px 5px;
   transition: background-color 0.3s ease;
 }
+
 /* === AVAILABILITY COLORS === */
-.available-free {
-  background-color: var(--color1);
+.available-campusA {
+  background: var(--color1);
 }
-.available-campus1 {
-  background-color: var(--color2);
+.available-campusB {
+  background: var(--color2);
 }
-.available-campus2 {
-  background-color: var(--color3);
+.available-campusC {
+  background: var(--color3);
+}
+
+#add-row-btn {
+  display: block;
+  margin: 1rem auto 0 auto;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  border: var(--solid-border);
+  border-radius: 10rem;
+  color: var(--color-text);
+  background-color: var(--color-background2);
+  opacity: 0.4;
+  transform: scale(0.5);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#add-row-btn:hover {
+  background-color: var(--color-background);
+  opacity: 0.8;
+  transform: scale(0.7);
+  box-shadow: 1px 1px 5px var(--color-darkgray);
 }
 
 /* === LEGEND SECTION === */
 #legend {
-  color: var(--color-text);
-  font-size: 2rem;
-  font-weight: bold;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2rem;
+  color: var(--color-text);
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 1rem;
 }
 
-.legend-row-wrapper {
-  position: relative;
-  width: 20rem;
-  height: 2rem;
+.legend-colors {
   display: flex;
+  justify-content: center;
   align-items: center;
+  gap: 2rem;
+  flex-wrap: nowrap;
 }
 
 .color-block {
-  flex: 1;
-  height: 100%;
-  cursor: pointer;
-  position: relative;
-}
-
-#legend-gradient {
   display: flex;
-  width: 100%;
-  height: 100%;
-  border-radius: 0.5rem;
-  border: var(--solid-border);
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem;
+  transition: background 0.3s, box-shadow 0.3s;
 }
 
-/* Oculta o seletor padrão */
-#color-picker.hidden {
-  display: none;
+.legend-button {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text);
+  background: none;
+  text-align: center;
+  line-height: 1.2;
+  display: inline-block;
+  transition: color 0.3s;
 }
 
 #color-picker {
   position: absolute;
-  z-index: 100;
+  z-index: 1000;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid black;
+  border-radius: 0.4rem;
+  padding: 0;
+  margin: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#color-picker.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* === RESET BUTTON === */
@@ -263,7 +282,8 @@ td:hover {
   font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
-  margin-top: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
   padding: 1rem 2rem;
   border: var(--solid-border);
   border-radius: 10rem;
@@ -300,6 +320,11 @@ td:hover {
   transform: translateX(-50%);
 }
 
+.popup-question {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
 .popup.hidden {
   display: none;
 }
@@ -308,44 +333,48 @@ td:hover {
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
+  gap: 1rem;
 }
 
 .popup button {
+  text-transform: uppercase;
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-weight: bold;
 }
 
 /* === RESPONSIVE DESIGN === */
-@media screen and (max-width: 1070px) {
+@media screen and (max-width: 820px) {
   html {
     font-size: 8px;
   }
 
-  .typing-text {
-    font-size: 2rem;
-    animation: none;
-    border-right: none;
-    max-width: none;
-    width: auto;
-    overflow: visible;
-    white-space: normal;
-  }
-
   table {
-    min-width: 70%;
-    max-width: 85%;
-    min-height: auto;
-    max-height: auto;
+    /* Remova min-width/max-width aqui para não sobrescrever o min-width global */
+    width: 100%;
   }
 
   th {
     font-size: 1.3rem;
     padding: 1rem;
-
-    word-break: break-word;
+    text-wrap: wrap;
     text-align: center;
   }
+
+  th[data-short] {
+    position: relative;
+    font-size: 0; /* Esconde texto normal */
+  }
+
+  th[data-short]::after {
+    content: attr(data-short);
+    font-size: 1.3rem; /* Mostra abreviação */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   th.time {
     height: auto;
     gap: 0.1rem;
@@ -359,18 +388,17 @@ td:hover {
   .time button {
     font-size: 0.9rem;
   }
+}
 
-  #legend {
-    font-size: 2rem;
+@media screen and (max-width: 500px) {
+  div#capture-area {
+    /* Permite scroll, mas esconde a barra */
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
   }
-  .legend-row-wrapper {
-    width: 20rem;
-  }
-  .legend-label.left {
-    left: -2.5rem;
-  }
-  .legend-label.right {
-    right: -4.5rem;
+  div#capture-area::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
   }
 }
 
@@ -414,6 +442,15 @@ body.dark-mode .time button,
   color: var(--color-white);
 }
 
+body.dark-mode #reset-button,
+body.dark-mode #export-button,
+body.dark-mode #add-row-btn {
+  border: var(--solid-border-darkmode);
+  color: var(--color-white);
+  background-color: var(--color-darkgray);
+  opacity: 0.8;
+}
+
 body.dark-mode .popup {
   background-color: var(--color-bg-darkmode);
   border: var(--solid-border-darkmode);
@@ -421,16 +458,72 @@ body.dark-mode .popup {
 
 /* === INTERACTIONS === */
 
-/* === SAVE FEEDBACK === */
-.save-feedback {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--color-white);
-  background: var(--color-text);
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+.legend-button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-icon {
+  font-size: 1rem; /* ou 1rem para ainda menor */
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  margin-left: 0.3rem;
+}
+
+.edit-icon:hover {
+  opacity: 1;
+}
+
+.legend-edit-input {
+  font-size: 1.1rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--color-darkgray);
+  border-radius: 0.4rem;
+  background-color: var(--color-white);
+  color: var(--color-text);
+  max-width: 10rem;
+  width: auto;
+  text-align: center;
+}
+
+td[data-note]::after {
+  content: attr(data-note);
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-darkgray);
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 0.3rem;
+  padding: 0 0.3rem;
+  pointer-events: none;
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+td {
+  position: relative;
+}
+.cell-note-input {
+  font-size: 1rem;
+  width: 90%;
+  position: absolute;
+  bottom: 2px;
+  left: 2px;
+  z-index: 2;
+}
+
+.color-block:focus,
+td:focus {
+  outline: 2px solid var(--color-darkgray);
+  outline-offset: 2px;
 }

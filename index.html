@@ -8,6 +8,7 @@
     <script src="script.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   </head>
+
   <body>
     <main>
       <label class="switch">
@@ -15,124 +16,232 @@
         <span class="slider"></span>
       </label>
       <div id="capture-area">
-        <table>
+        <table role="table" aria-label="Availability Table">
           <caption>
-            <span class="typing-text">Availability Table</span>
+            <span>Availability Table</span>
           </caption>
           <thead>
             <tr>
               <th></th>
-              <th>Monday</th>
-              <th>Tuesday</th>
-              <th>Wednesday</th>
-              <th>Thursday</th>
-              <th>Friday</th>
+              <th data-short="Mon">Monday</th>
+              <th data-short="Tue">Tuesday</th>
+              <th data-short="Wed">Wednesday</th>
+              <th data-short="Thu">Thursday</th>
+              <th data-short="Fri">Friday</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th class="time" data-index="0" rowspan="2">
+              <th class="time" data-index="0">
                 <button class="up">▲</button>
                 <span class="time-label">08:00 AM</span>
                 <button class="down">▼</button>
               </th>
-              <td class="available-free"></td>
-              <td class="available-campus1"></td>
-              <td class="available-campus1"></td>
-              <td class="available-campus2"></td>
-              <td class="available-campus2"></td>
+              <td
+                class="available-campusA"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusA"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusB"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusC"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusC"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
             </tr>
 
             <tr>
-              <th class="time" data-index="0" rowspan="2">
+              <th class="time" data-index="0">
                 <button class="up">▲</button>
                 <span class="time-label">09:00 AM</span>
                 <button class="down">▼</button>
               </th>
-              <td class="available-free"></td>
-              <td class="available-campus1"></td>
-              <td class="available-campus1"></td>
-              <td class="available-campus2"></td>
-              <td class="available-campus2"></td>
+              <td
+                class="available-campusA"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusA"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusB"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusC"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusC"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
             </tr>
 
             <tr>
-              <th class="time" data-index="0" rowspan="2">
+              <th class="time" data-index="0">
                 <button class="up">▲</button>
                 <span class="time-label">10:00 AM</span>
                 <button class="down">▼</button>
               </th>
-              <td class="available-free"></td>
-              <td class="available-campus1"></td>
-              <td class="available-campus1"></td>
-              <td class="available-campus2"></td>
-              <td class="available-campus2"></td>
+              <td
+                class="available-campusA"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusA"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusB"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusC"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusC"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
             </tr>
 
             <tr>
-              <th class="time" data-index="0" rowspan="2">
+              <th class="time" data-index="0">
                 <button class="up">▲</button>
                 <span class="time-label">11:00 AM</span>
                 <button class="down">▼</button>
               </th>
-              <td class="available-free"></td>
-              <td class="available-campus1"></td>
-              <td class="available-campus1"></td>
-              <td class="available-campus2"></td>
-              <td class="available-campus2"></td>
+              <td
+                class="available-campusA"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusA"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusB"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusC"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusC"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
             </tr>
 
             <tr>
-              <th class="time" data-index="0" rowspan="2">
+              <th class="time" data-index="0">
                 <button class="up">▲</button>
                 <span class="time-label">12:00 PM</span>
                 <button class="down">▼</button>
               </th>
-              <td class="available-free"></td>
-              <td class="available-campus1"></td>
-              <td class="available-campus1"></td>
-              <td class="available-campus2"></td>
-              <td class="available-campus2"></td>
+              <td
+                class="available-campusA"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusA"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusB"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusC"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
+              <td
+                class="available-campusC"
+                tabindex="0"
+                aria-label="Edit cell"
+              ></td>
             </tr>
+            <!-- Coloque abaixo da tabela -->
           </tbody>
         </table>
+        <button id="add-row-btn" aria-label="Add Row">Add Row</button>
 
         <section id="legend">
-          <span>Availability</span>
-          <div class="legend-row-wrapper">
-            <div id="legend-gradient">
-              <div
-                class="color-block"
-                data-var="--color1"
-                title="Available"
-              ></div>
-              <div
-                class="color-block"
-                data-var="--color2"
-                title="Campus A"
-              ></div>
-              <div
-                class="color-block"
-                data-var="--color3"
-                title="Campus B"
-              ></div>
+          <div class="legend-colors">
+            <div
+              class="color-block"
+              data-var="--color1"
+              title="Campus A"
+              tabindex="0"
+            >
+              <button class="legend-button" data-key="label1">Campus A</button>
             </div>
-
-            <input type="color" id="color-picker" class="hidden" />
+            <div
+              class="color-block"
+              data-var="--color2"
+              title="Campus B"
+              tabindex="0"
+            >
+              <button class="legend-button" data-key="label2">Campus B</button>
+            </div>
+            <div
+              class="color-block"
+              data-var="--color3"
+              title="Campus C"
+              tabindex="0"
+            >
+              <button class="legend-button" data-key="label3">Campus C</button>
+            </div>
           </div>
         </section>
+        <input type="color" id="color-picker" />
       </div>
+
       <section>
-        <button id="reset-button">Reset Table</button>
+        <button id="reset-button" aria-label="Reset Table">Reset</button>
         <button id="export-button">Export as PNG</button>
       </section>
     </main>
     <div id="popup" class="popup hidden">
-      <p>Choose the place:</p>
+      <p class="popup-question">Choose the place:</p>
       <div class="popup-options">
-        <button data-value="free">Available</button>
-        <button data-value="campus1">Campus A</button>
-        <button data-value="campus2">Campus B</button>
+        <button data-key="label1" data-value="campusA">Campus A</button>
+        <button data-key="label2" data-value="campusB">Campus B</button>
+        <button data-key="label3" data-value="campusC">Campus C</button>
       </div>
     </div>
   </body>
