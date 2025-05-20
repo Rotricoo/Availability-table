@@ -217,6 +217,9 @@ document.getElementById("reset-button").addEventListener("click", () => {
       "available-campusC"
     );
     localStorage.removeItem(`cell-${index}`);
+    // Limpa nota visual e do localStorage
+    cell.removeAttribute("data-note");
+    localStorage.removeItem(`note-${index}`);
   });
 
   // Remove extra rows
@@ -646,8 +649,9 @@ document.querySelectorAll("td").forEach((cell, idx) => {
     let note = localStorage.getItem(`note-${idx}`) || "";
     const input = document.createElement("input");
     input.type = "text";
-    input.value = note;
+    input.maxLength = 100;
     input.className = "cell-note-input";
+    input.value = note;
     cell.appendChild(input);
     input.focus();
 
