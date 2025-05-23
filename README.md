@@ -33,6 +33,12 @@ Using the final result from that task, I decided to extend it into a fully inter
 
 ---
 
+## Demo
+
+[Live Demo on Vercel](https://availability-table.vercel.app)
+
+---
+
 ## How to Use
 
 1. **Set Availability**: Click a cell to choose availability status.
