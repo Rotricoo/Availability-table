@@ -55,11 +55,7 @@ function showPopup(cell, x, y) {
 // Apply and save selected availability
 // Aplica e salva a disponibilidade escolhida
 function applyAvailability(cell, value) {
-  cell.classList.remove(
-    "available-campusA",
-    "available-campusB",
-    "available-campusC"
-  );
+  cell.classList.remove("available-campusA", "available-campusB", "available-campusC");
   cell.classList.add(`available-${value}`);
   const index = Array.from(cells).indexOf(cell);
   localStorage.setItem(`cell-${index}`, value);
@@ -80,11 +76,7 @@ popupButtons.forEach((btn) => {
 cells.forEach((cell) => {
   cell.addEventListener("click", (e) => {
     const rect = cell.getBoundingClientRect();
-    showPopup(
-      cell,
-      rect.left + window.scrollX,
-      rect.top + window.scrollY + cell.offsetHeight
-    );
+    showPopup(cell, rect.left + window.scrollX, rect.top + window.scrollY + cell.offsetHeight);
   });
 });
 
@@ -112,9 +104,7 @@ document.addEventListener("click", (e) => {
 
 // Get all <th> with .time-label
 // Seleciona todos os <th> com .time-label
-const allTimeCells = Array.from(document.querySelectorAll("th.time")).filter(
-  (cell) => cell.querySelector(".time-label")
-);
+const allTimeCells = Array.from(document.querySelectorAll("th.time")).filter((cell) => cell.querySelector(".time-label"));
 
 // Update all times from a new base value
 // Atualiza todos os horários a partir de um novo valor base
@@ -123,8 +113,7 @@ function updateAllTimes(baseTime, index) {
   for (let i = 0; i < allTimeCells.length; i++) {
     const offset = i - index;
     const newTime = addHoursToTime(baseTime, offset);
-    allTimeCells[i].querySelector(".time-label").textContent =
-      formatTime(newTime);
+    allTimeCells[i].querySelector(".time-label").textContent = formatTime(newTime);
   }
 }
 
@@ -211,11 +200,7 @@ document.getElementById("reset-button").addEventListener("click", () => {
   // Limpa seleções
   const allCells = document.querySelectorAll("td");
   allCells.forEach((cell, index) => {
-    cell.classList.remove(
-      "available-campusA",
-      "available-campusB",
-      "available-campusC"
-    );
+    cell.classList.remove("available-campusA", "available-campusB", "available-campusC");
     localStorage.removeItem(`cell-${index}`);
     // Limpa nota visual e do localStorage
     cell.removeAttribute("data-note");
@@ -231,13 +216,7 @@ document.getElementById("reset-button").addEventListener("click", () => {
 
   // Restore original times
   // Restaura horários originais
-  const baseTimes = [
-    "08:00 AM",
-    "09:00 AM",
-    "10:00 AM",
-    "11:00 AM",
-    "12:00 PM",
-  ];
+  const baseTimes = ["08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM"];
   for (let i = 0; i < 5; i++) {
     const th = tbody.rows[i].querySelector(".time-label");
     if (th) th.textContent = baseTimes[i];
@@ -254,9 +233,7 @@ document.getElementById("reset-button").addEventListener("click", () => {
   ["label1", "label2", "label3"].forEach((key) => {
     localStorage.removeItem(key);
     // Update legend button text
-    const legendBtn = document.querySelector(
-      `.legend-button[data-key="${key}"]`
-    );
+    const legendBtn = document.querySelector(`.legend-button[data-key="${key}"]`);
     if (legendBtn) legendBtn.textContent = defaultLabels[key];
     // Update popup button text
     const popupBtn = document.querySelector(`.popup button[data-key="${key}"]`);
@@ -307,9 +284,7 @@ colorBlocks.forEach((block) => {
     const currentColor = getComputedStyle(block).backgroundColor;
     colorPicker.value = rgbToHex(currentColor);
 
-    colorPicker.style.left = `${
-      rect.left + scrollLeft + rect.width / 2 - 16
-    }px`;
+    colorPicker.style.left = `${rect.left + scrollLeft + rect.width / 2 - 16}px`;
     colorPicker.style.top = `${rect.top + scrollTop - 30}px`;
 
     colorPicker.classList.add("active");
@@ -321,10 +296,7 @@ colorBlocks.forEach((block) => {
   });
 
   block.addEventListener("keydown", (e) => {
-    if (
-      (e.key === "Enter" || e.key === " ") &&
-      document.activeElement === block
-    ) {
+    if ((e.key === "Enter" || e.key === " ") && document.activeElement === block) {
       lastColorBlock = block;
       block.click();
       e.preventDefault();
@@ -336,9 +308,7 @@ colorPicker.addEventListener("change", (e) => {
   const targetVar = e.target.dataset.target;
   document.documentElement.style.setProperty(targetVar, e.target.value);
   // Update color block visual immediately
-  document.querySelector(
-    `.color-block[data-var="${targetVar}"]`
-  ).style.backgroundColor = e.target.value;
+  document.querySelector(`.color-block[data-var="${targetVar}"]`).style.backgroundColor = e.target.value;
   colorPicker.classList.remove("active");
   // Return focus to color block
   if (lastColorBlock) lastColorBlock.focus();
@@ -423,9 +393,7 @@ labelButtons.forEach((button) => {
         localStorage.setItem(key, newName);
 
         // Update popup button text
-        const popupBtn = document.querySelector(
-          `.popup button[data-key="${key}"]`
-        );
+        const popupBtn = document.querySelector(`.popup button[data-key="${key}"]`);
         if (popupBtn) popupBtn.textContent = newName;
       }
       input.remove();
@@ -560,11 +528,7 @@ addRowBtn.addEventListener("click", () => {
     const td = document.createElement("td");
     td.addEventListener("click", (e) => {
       const rect = td.getBoundingClientRect();
-      showPopup(
-        td,
-        rect.left + window.scrollX,
-        rect.top + window.scrollY + td.offsetHeight
-      );
+      showPopup(td, rect.left + window.scrollX, rect.top + window.scrollY + td.offsetHeight);
     });
     tr.appendChild(td);
   }
@@ -634,9 +598,7 @@ updateAddRowBtnState();
 // Auxiliary function to get all time cells
 // FUNÇÃO AUXILIAR PARA OBTER TODAS AS CÉLULAS DE HORÁRIO
 function getAllTimeCells() {
-  return Array.from(document.querySelectorAll("th.time")).filter((cell) =>
-    cell.querySelector(".time-label")
-  );
+  return Array.from(document.querySelectorAll("th.time")).filter((cell) => cell.querySelector(".time-label"));
 }
 
 /* =========================
@@ -647,16 +609,15 @@ function getAllTimeCells() {
 document.querySelectorAll("td").forEach((cell, idx) => {
   cell.addEventListener("dblclick", () => {
     let note = localStorage.getItem(`note-${idx}`) || "";
-    const input = document.createElement("input");
-    input.type = "text";
-    input.maxLength = 100;
-    input.className = "cell-note-input";
-    input.value = note;
-    cell.appendChild(input);
-    input.focus();
+    const textarea = document.createElement("textarea");
+    textarea.maxLength = 100;
+    textarea.className = "cell-note-textarea";
+    textarea.value = note;
+    cell.appendChild(textarea);
+    textarea.focus();
 
-    input.addEventListener("blur", () => {
-      note = input.value.trim();
+    textarea.addEventListener("blur", () => {
+      note = textarea.value.trim();
       if (note) {
         localStorage.setItem(`note-${idx}`, note);
         cell.setAttribute("data-note", note);
@@ -664,11 +625,11 @@ document.querySelectorAll("td").forEach((cell, idx) => {
         localStorage.removeItem(`note-${idx}`);
         cell.removeAttribute("data-note");
       }
-      input.remove();
+      textarea.remove();
     });
 
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") input.blur();
+    textarea.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") textarea.blur();
     });
   });
 

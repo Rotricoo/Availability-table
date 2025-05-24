@@ -1,32 +1,27 @@
-/* =========================
- * 1. CSS VARIABLES | VARIÁVEIS CSS
- * =========================
- */
+/* === 1. CSS VARIABLES | VARIÁVEIS CSS === */
 :root {
   /* Colors for availability | Cores para disponibilidade */
-  --color1: rgb(123, 215, 113);
-  --color2: rgb(35, 122, 23);
-  --color3: rgb(70, 150, 50);
+  --color1: rgb(50, 114, 166);
+  --color2: rgb(219, 107, 65);
+  --color3: rgb(232, 166, 173);
 
   /* General colors | Cores gerais */
-  --color-background: rgb(123, 215, 113);
-  --color-background2: rgb(30, 85, 17);
-  --color-text: rgb(9, 60, 2);
-  --color-white: #fff;
-  --color-black: #000;
+  --color-white: #ffffff;
+  --color-lightgray: #d9d9d9;
   --color-gray: #9c9b9b;
-  --color-darkgray: #444;
-  --solid-border: 2px solid var(--color-text);
+  --color-darkgray: rgb(37, 37, 35);
+  --color-black: #000000;
+  --color-text: rgb(37, 37, 35);
+  --solid-border: 1px solid var(--color-darkgray);
+  --color-background: rgb(243, 231, 231);
 
   /* Dark mode | Modo escuro */
-  --color-bg-darkmode: #222;
+  --color-text-darkmode: rgb(185, 185, 185);
+  --color-bg-darkmode: rgb(37, 37, 35);
   --solid-border-darkmode: 2px solid var(--color-gray);
 }
 
-/* =========================
- * 2. UNIVERSAL RESET & BASE STYLES | RESET UNIVERSAL E ESTILOS BASE
- * =========================
- */
+/* === 2. UNIVERSAL RESET & BASE STYLES | RESET UNIVERSAL E ESTILOS BASE === */
 * {
   margin: 0;
   padding: 0;
@@ -37,11 +32,7 @@ html {
 }
 body {
   font-family: "Courier New", Courier, monospace;
-  background: linear-gradient(
-    180deg,
-    var(--color-background) 0%,
-    var(--color-background2) 100%
-  );
+  background: var(--color-background);
   min-height: 100vh;
   margin: 0;
   display: flex;
@@ -50,10 +41,7 @@ body {
   justify-content: flex-start; /* or center | ou center se quiser tudo centralizado */
 }
 
-/* =========================
- * 3. MAIN STRUCTURE | ESTRUTURA PRINCIPAL
- * =========================
- */
+/* === 3. MAIN STRUCTURE | ESTRUTURA PRINCIPAL === */
 main {
   width: 100%;
   display: flex;
@@ -70,10 +58,7 @@ div#capture-area {
   overflow-x: auto;
 }
 
-/* =========================
- * 4. TOGGLE SWITCH | BOTÃO DE TEMA
- * =========================
- */
+/* === 4. TOGGLE SWITCH | BOTÃO DE TEMA === */
 .switch {
   margin-top: 2rem;
   opacity: 0.5;
@@ -116,10 +101,7 @@ input:checked + .slider::before {
   transform: translateX(30px);
 }
 
-/* =========================
- * 5. TABLE STRUCTURE | ESTRUTURA DA TABELA
- * =========================
- */
+/* === 5. TABLE STRUCTURE | ESTRUTURA DA TABELA === */
 table {
   min-width: 350px; /* minimum readable width | largura mínima legível */
   width: 100%;
@@ -130,10 +112,7 @@ table {
   table-layout: fixed;
 }
 
-/* =========================
- * 6. CAPTION TEXT ANIMATION | ANIMAÇÃO DO TÍTULO
- * =========================
- */
+/* === 6. CAPTION TEXT ANIMATION | ANIMAÇÃO DO TÍTULO === */
 caption {
   text-transform: uppercase;
   font-size: 2.5rem;
@@ -143,10 +122,7 @@ caption {
   padding-bottom: 1rem;
 }
 
-/* =========================
- * 7. TABLE HEADERS | CABEÇALHOS DA TABELA
- * =========================
- */
+/* === 7. TABLE HEADERS | CABEÇALHOS DA TABELA === */
 th {
   font-weight: bold;
   font-size: 2rem;
@@ -164,10 +140,7 @@ th.time {
   height: 5rem;
 }
 
-/* =========================
- * 8. TIME CONTROLS | CONTROLES DE HORÁRIO
- * =========================
- */
+/* === 8. TIME CONTROLS | CONTROLES DE HORÁRIO === */
 .time-label {
   font-size: 1.5rem;
   font-weight: bold;
@@ -183,10 +156,7 @@ th.time {
   color: var(--color-white);
 }
 
-/* =========================
- * 9. TABLE DATA CELLS | CÉLULAS DE DADOS
- * =========================
- */
+/* === 9. TABLE DATA CELLS | CÉLULAS DE DADOS === */
 td {
   border: var(--solid-border);
   cursor: pointer;
@@ -198,10 +168,7 @@ td:hover {
   transition: background-color 0.3s ease;
 }
 
-/* =========================
- * 10. AVAILABILITY COLORS | CORES DE DISPONIBILIDADE
- * =========================
- */
+/* === 10. AVAILABILITY COLORS | CORES DE DISPONIBILIDADE === */
 .available-campusA {
   background: var(--color1);
 }
@@ -212,10 +179,7 @@ td:hover {
   background: var(--color3);
 }
 
-/* =========================
- * 11. ADD ROW BUTTON | BOTÃO DE ADICIONAR LINHA
- * =========================
- */
+/* === 11. ADD ROW BUTTON | BOTÃO DE ADICIONAR LINHA === */
 #add-row-btn {
   display: block;
   margin: 1rem auto 0 auto;
@@ -226,7 +190,7 @@ td:hover {
   border: var(--solid-border);
   border-radius: 10rem;
   color: var(--color-text);
-  background-color: var(--color-background2);
+  background-color: var(--color-background);
   opacity: 0.4;
   transform: scale(0.5);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -238,10 +202,7 @@ td:hover {
   box-shadow: 1px 1px 5px var(--color-darkgray);
 }
 
-/* =========================
- * 12. LEGEND SECTION | SEÇÃO DE LEGENDA
- * =========================
- */
+/* === 12. LEGEND SECTION | SEÇÃO DE LEGENDA === */
 #legend {
   display: flex;
   flex-direction: column;
@@ -281,20 +242,16 @@ td:hover {
   transition: color 0.3s;
 }
 
-/* =========================
- * 13. COLOR PICKER | SELETOR DE COR
- * =========================
- */
+/* === 13. COLOR PICKER | SELETOR DE COR === */
 #color-picker {
   position: absolute;
   z-index: 1000;
   width: 2rem;
   height: 2rem;
-  border: 2px solid black;
+  border: 2px solid var(--solid-border);
   border-radius: 0.4rem;
   padding: 0;
   margin: 0;
-  background: white;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -304,10 +261,7 @@ td:hover {
   pointer-events: auto;
 }
 
-/* =========================
- * 14. RESET/EXPORT BUTTONS | BOTÕES DE RESET/EXPORTAR
- * =========================
- */
+/* === 14. RESET/EXPORT BUTTONS | BOTÕES DE RESET/EXPORTAR === */
 #reset-button,
 #export-button {
   font-size: 1rem;
@@ -319,7 +273,7 @@ td:hover {
   border: var(--solid-border);
   border-radius: 10rem;
   color: var(--color-text);
-  background-color: var(--color-background2);
+  background-color: var(--color-background);
   opacity: 0.4;
   transform: scale(0.9);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -332,10 +286,7 @@ td:hover {
   box-shadow: 1px 1px 5px var(--color-darkgray);
 }
 
-/* =========================
- * 15. POPUP MENU | MENU POPUP
- * =========================
- */
+/* === 15. POPUP MENU | MENU POPUP === */
 .popup {
   width: max-content;
   font-size: 1.2rem;
@@ -343,7 +294,7 @@ td:hover {
   font-weight: 600;
   position: absolute;
   background-color: var(--color-background);
-  border: 2px solid var(--color-background2);
+  border: 2px solid var(--solid-border);
   padding: 1rem 2rem;
   border-radius: 1rem;
   box-shadow: 0 0 10px var(--color-darkgray);
@@ -371,10 +322,7 @@ td:hover {
   font-weight: bold;
 }
 
-/* =========================
- * 16. RESPONSIVE DESIGN | DESIGN RESPONSIVO
- * =========================
- */
+/* === 16. RESPONSIVE DESIGN | DESIGN RESPONSIVO === */
 @media screen and (max-width: 820px) {
   html {
     font-size: 8px;
@@ -424,16 +372,8 @@ td:hover {
   }
 }
 
-/* =========================
- * 17. DARK MODE | MODO ESCURO
- * =========================
- */
+/* === 17. DARK MODE | MODO ESCURO === */
 body.light-mode {
-  background: linear-gradient(
-    180deg,
-    var(--color-background) 0%,
-    var(--color-background2) 100%
-  );
   color: var(--color-text);
 }
 body.light-mode th,
@@ -444,10 +384,23 @@ body.light-mode .popup {
   background-color: var(--color-background);
   border: var(--solid-border);
 }
+
+/* === DARK MODE === */
+
 body.dark-mode {
-  background: var(--color-bg-darkmode);
-  color: var(--color-gray);
+  /* New dark root */
+  --color-background: var(--color-bg-darkmode);
+  --color-text: var(--color-text-darkmode);
+  --solid-border: var(--solid-border-darkmode);
+  /* Here the body dark modifications */
+  background: var(--color-background);
+  color: var(--color-text);
 }
+
+body.dark-mode .slider {
+  background-color: var(--color-gray);
+}
+
 body.dark-mode table th,
 body.dark-mode table td {
   border: var(--solid-border-darkmode);
@@ -463,35 +416,32 @@ body.dark-mode .time button,
 body.dark-mode #reset-button,
 body.dark-mode #export-button,
 body.dark-mode #add-row-btn {
-  border: var(--solid-border-darkmode);
+  border: var(--solid-border);
   color: var(--color-white);
   background-color: var(--color-darkgray);
   opacity: 0.8;
 }
 body.dark-mode .popup {
-  background-color: var(--color-bg-darkmode);
-  border: var(--solid-border-darkmode);
+  background-color: var(--color-background);
+  border: var(--solid-border);
 }
 body.dark-mode .color-block {
-  border: 0.5px solid var(--color-white);
+  border: 0.5px solid var(--solid-border);
   box-shadow: 0 0 0 2px var(--color-white);
 }
-body.dark-mode .cell-note-input {
-  background: rgba(34, 34, 34, 0.98);
-  color: var(--color-white);
-  border: 1.5px solid var(--color-gray);
+
+body.dark-mode td[data-note]::after {
+  background: var(--color-darkgray);
+  color: var(--color-text-darkmode);
 }
 
-body.dark-mode .cell-note-input:focus {
-  border: 2px solid var(--color1);
-  background: #222;
-  color: var(--color-white);
+body.dark-mode .cell-note-textarea {
+  color: var(--color-darkgray);
+  background: var(--color-gray);
+  border: 1.5px solid var(--solid-border);
 }
 
-/* =========================
- * 18. INTERACTIONS & ACCESSIBILITY | INTERAÇÕES E ACESSIBILIDADE
- * =========================
- */
+/* === 18. INTERACTIONS & ACCESSIBILITY | INTERAÇÕES E ACESSIBILIDADE === */
 .legend-button-wrapper {
   display: flex;
   align-items: center;
@@ -515,7 +465,7 @@ body.dark-mode .cell-note-input:focus {
 .legend-edit-input {
   font-size: 1.1rem;
   padding: 0.2rem 0.5rem;
-  border: 1px solid var(--color-darkgray);
+  border: 1px solid var(--solid-border);
   border-radius: 0.4rem;
   background-color: var(--color-white);
   color: var(--color-text);
@@ -528,11 +478,11 @@ td[data-note]::after {
   content: attr(data-note);
   display: block;
   font-size: 0.9rem;
-  color: var(--color-darkgray);
+  color: var(--color-text);
   position: absolute;
   bottom: 5px;
   right: 5px;
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--color-lightgray);
   border-radius: 0.3rem;
   padding: 0.2rem 0.5rem;
   pointer-events: none;
@@ -547,7 +497,7 @@ td[data-note]::after {
   -webkit-box-orient: vertical;
 }
 
-.cell-note-input {
+.cell-note-textarea {
   font-size: 1rem;
   width: 92%;
   min-height: 2.2em;
@@ -557,9 +507,9 @@ td[data-note]::after {
   left: 2px;
   z-index: 2;
   padding: 0.4em 0.8em;
-  border: 1.5px solid var(--color-background2);
+  border: 1.5px solid var(--solid-border);
   border-radius: 0.5em;
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--color-lightgray);
   color: var(--color-text);
   box-shadow: 0 2px 8px rgba(30, 85, 17, 0.1);
   outline: none;
@@ -567,8 +517,8 @@ td[data-note]::after {
   transition: border 0.2s, box-shadow 0.2s;
 }
 
-.cell-note-input:focus {
-  border: 2px solid var(--color1);
+.cell-note-textarea:focus {
+  border: 2px solid var(--solid-border);
   box-shadow: 0 4px 16px rgba(30, 85, 17, 0.18);
-  background: #fff;
+  background: var(--color-white);
 }
