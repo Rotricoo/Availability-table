@@ -95,12 +95,7 @@ This structure makes it easier for learners and collaborators to understand and 
 
 ---
 
-## Screenshots
+## Credits
 
-### Light Mode
-
-![Availability Table - Light Mode](./assets/screenshot-light.png)
-
-### Dark Mode
-
-![Availability Table - Dark Mode](./assets/screenshot-dark.png)
+- Created by [Rodrigo Souza](https://www.linkedin.com/in/rotrico)
+- Project based on the FreeCodeCamp Certified Full Stack Developer Curriculum.
